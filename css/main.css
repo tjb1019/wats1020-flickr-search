@@ -21,14 +21,17 @@ hr {
     clear:both;
 }
 
-#images li {
-	height: 600px;
+#images img:hover {
+	cursor: pointer;
 }
 .image-title {
 	font-weight: bold;
 	font-size: 2rem;
 	font-family: Ubuntu;
 	margin-top: 1rem;
+}
+#images li {
+	height: 400px;
 }
 
 
