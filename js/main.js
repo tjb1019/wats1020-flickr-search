@@ -10,16 +10,16 @@ $(document).on('ready', function(){
 			$('#images').empty();
 			$.each(data.items, function(i, item) {
 				var newListItem = $('<li class="col-md-3">');
+				var textDesc = $(item.description).text();
 				var imageWrapper = $('<a>').attr({
 					'data-toggle': "modal",
 					'data-target': "#infoModal",
-					'data-imgsrc': item.media.m
+					'data-imgsrc': item.media.m,
+					'data-description': textDesc
 				}).appendTo(newListItem);
 				var newImage = $('<img>').attr('src', item.media.m).appendTo(imageWrapper);
 				var newTitle = $('<p class="image-title">').text(item.title).appendTo(newListItem);
 				var newDate = $('<p class="image-date">').text(item.date_taken).appendTo(newListItem);
-				//var textDesc = $(item.description).text();
-				//var newDescription = $('<p class="image-description">').html(textDesc).appendTo(newListItem);
 				var newAuthor = $('<p class="image-author">').text(item.author).appendTo(newListItem);
 				var newLink = $('<a class="flickr-link btn btn-info">').attr('href', item.link).text('View source image on Flickr').appendTo(newListItem);
 				
@@ -42,11 +42,17 @@ $(document).on('ready', function(){
 	$('#infoModal').on('show.bs.modal', function (event) {
 		var button = $(event.relatedTarget); // Button that triggered the modal
 		var imgSrc = button.data('imgsrc');
+		var imgDescription = button.data('description');
 
-		// Update the modal's content
+		// Update the modal's body content
 		var modal = $(this);
 		var modalBody = modal.find('.modal-body');
 		modalBody.empty();
 		var modalImage = $('<img>').attr('src', imgSrc).appendTo(modalBody);
+		
+		// Update modal's footer content
+		var modalFooter = modal.find('.modal-footer');
+		modalFooter.empty();
+		var modalDescription = $('<p>').html(imgDescription).prependTo(modalFooter);
 	});
 });
