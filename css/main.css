@@ -26,6 +26,9 @@ hr {
 	cursor: pointer;
 	transform: translate(0, -20px);
 }
+#images img {
+	transition: 2s;
+}
 .image-title {
 	font-weight: bold;
 	font-size: 2rem;
